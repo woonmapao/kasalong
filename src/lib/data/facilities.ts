@@ -26,16 +26,6 @@ export const facilities: Facility[] = [
 		icon: 'Waves'
 	},
 	{
-		id: 'spa',
-		name: 'Spa & Wellness',
-		description:
-			'Surrender to traditional Thai healing therapies in our serene spa sanctuary. Our skilled therapists combine ancient Lanna techniques with premium aromatherapy products.',
-		details: ['Traditional Thai massage', 'Aromatherapy', 'Body scrubs & wraps', 'Facial treatments', 'Couple treatment suites'],
-		hours: '10:00 AM – 9:00 PM',
-		image: '/images/resort/hero-1.jpg',
-		icon: 'Sparkles'
-	},
-	{
 		id: 'dining',
 		name: 'Thai Cuisine & Dining',
 		description:

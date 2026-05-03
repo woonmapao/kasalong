@@ -10,7 +10,7 @@
 
 <svelte:head>
 	<title>Facilities — Kasalong Resort and Spa Pattaya</title>
-	<meta name="description" content="Discover Kasalong's world-class facilities: resort pool, Thai spa, dining, conference rooms, and more." />
+	<meta name="description" content="Discover Kasalong's world-class facilities: resort pool, Thai dining, conference rooms, and more." />
 </svelte:head>
 
 <!-- Page hero -->

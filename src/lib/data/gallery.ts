@@ -26,8 +26,7 @@ export const galleryImages: GalleryImage[] = [
 	{ id: 'g11', src: '/images/resort/k-17.jpg',      alt: 'Resort restaurant dining hall', category: 'facilities', width: 2048, height: 1365 },
 	{ id: 'g12', src: '/images/resort/k-15.jpg',      alt: 'Restaurant with red and gold Thai murals', category: 'facilities', width: 2048, height: 1365 },
 	{ id: 'g13', src: '/images/resort/hero-2.jpg',    alt: 'Lanna Grand Hall conference & events', category: 'facilities', width: 1600, height: 1066 },
-	{ id: 'g14', src: '/images/resort/hero-1.jpg',    alt: 'Spa treatment room', category: 'facilities', width: 1600, height: 1066 },
-	{ id: 'g15', src: '/images/resort/interior-1.jpg', alt: 'Gold leaf lobby and reception', category: 'facilities', width: 2048, height: 1365 },
+{ id: 'g15', src: '/images/resort/interior-1.jpg', alt: 'Gold leaf lobby and reception', category: 'facilities', width: 2048, height: 1365 },
 
 	// Rooms
 	{ id: 'g16', src: '/images/resort/room-1.jpg',    alt: 'Junior Suite with gold leaf ceiling and carved wardrobes', category: 'rooms', width: 2048, height: 1365 },

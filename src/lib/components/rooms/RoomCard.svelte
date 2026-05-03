@@ -69,8 +69,14 @@
 			</ul>
 		{/if}
 
-		<div class="mt-5 border-t border-[var(--color-ivory)] pt-4">
+		<div class="mt-5 flex flex-col gap-2 border-t border-[var(--color-ivory)] pt-4">
 			<Button variant="gold" size="sm" href="/book" class="w-full">Book This Room</Button>
+			<a
+				href="/rooms/{room.id}"
+				class="text-center text-xs font-medium text-[var(--color-teal)] hover:underline"
+			>
+				View Details →
+			</a>
 		</div>
 	</div>
 </article>

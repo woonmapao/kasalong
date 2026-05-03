@@ -7,6 +7,7 @@ export interface Room {
 	description: string;
 	features: string[];
 	image: string;
+	images?: string[];
 	featured?: boolean;
 }
 
@@ -20,7 +21,8 @@ export const rooms: Room[] = [
 		description:
 			'Warmly appointed with golden teak panelling and traditional Thai carved decorations. The perfect base for exploring Pattaya.',
 		features: ['Air Conditioning', 'Free WiFi', 'Flat-screen TV', 'En-suite Bathroom', 'Mini Fridge', 'Safe Box'],
-		image: '/images/resort/k-173.jpg'
+		image: '/images/resort/k-173.jpg',
+		images: ['/images/resort/k-159.jpg', '/images/resort/k-168.jpg']
 	},
 	{
 		id: 'superior',
@@ -31,7 +33,8 @@ export const rooms: Room[] = [
 		description:
 			'A charming four-poster teak canopy bed with sheer draping, warm amber walls, and hand-carved Thai wall art — classic Lanna romance.',
 		features: ['Four-poster Canopy Bed', 'Air Conditioning', 'Free WiFi', 'Flat-screen TV', 'En-suite Bathroom', 'Mini Bar', 'Safe Box'],
-		image: '/images/resort/k-162.jpg'
+		image: '/images/resort/k-162.jpg',
+		images: ['/images/resort/k-161.jpg', '/images/resort/k-92.jpg']
 	},
 	{
 		id: 'deluxe',
@@ -55,6 +58,7 @@ export const rooms: Room[] = [
 			'Wake up to shimmering turquoise pool views through floor-to-ceiling sliding doors. Teak wood furnishings and Thai carvings complete this tropical sanctuary.',
 		features: ['Direct Pool View', 'Sliding Glass Doors', 'Air Conditioning', 'Free WiFi', 'Smart TV', 'Full Bathroom', 'Mini Bar', 'Outdoor Seating'],
 		image: '/images/resort/k-85.jpg',
+		images: ['/images/resort/room-3.jpg', '/images/resort/k-90.jpg', '/images/resort/k-178.jpg'],
 		featured: true
 	},
 	{
@@ -67,6 +71,7 @@ export const rooms: Room[] = [
 			'The crown jewel of Kasalong — gold-leaf coffered ceiling, intricately carved teak wardrobes with golden Thai botanical inlays, and premium amenities throughout.',
 		features: ['Gold Leaf Ceiling', 'Carved Teak Wardrobes', 'Soaking Tub', 'Air Conditioning', 'Free WiFi', 'Smart TV', 'Mini Bar', 'Butler Service'],
 		image: '/images/resort/room-1.jpg',
+		images: ['/images/resort/room-2.jpg', '/images/resort/k-35.jpg'],
 		featured: true
 	}
 ];

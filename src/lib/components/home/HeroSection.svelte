@@ -3,7 +3,7 @@
 	import { ChevronDown } from 'lucide-svelte';
 
 	function scrollDown() {
-		window.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
+		window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
 	}
 </script>
 
