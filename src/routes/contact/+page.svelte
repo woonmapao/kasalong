@@ -9,13 +9,23 @@
 <svelte:head>
 	<title>Contact Us — Kasalong Resort and Spa Pattaya</title>
 	<meta name="description" content="Get in touch with Kasalong Resort and Spa Pattaya. Call, email, or send us a message. We're available 24 hours a day." />
+	<link rel="canonical" href="https://kasalongresort.com/contact" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Contact Us — Kasalong Resort and Spa Pattaya" />
+	<meta property="og:description" content="Get in touch with Kasalong Resort and Spa Pattaya. Call, email, or send us a message. We're available 24 hours a day." />
+	<meta property="og:image" content="https://kasalongresort.com/images/resort/interior-1.webp" />
+	<meta property="og:url" content="https://kasalongresort.com/contact" />
+	<meta name="twitter:title" content="Contact Us — Kasalong Resort and Spa Pattaya" />
+	<meta name="twitter:description" content="Get in touch with Kasalong Resort and Spa Pattaya. Call, email, or send us a message. We're available 24 hours a day." />
+	<meta name="twitter:image" content="https://kasalongresort.com/images/resort/interior-1.webp" />
 </svelte:head>
 
 <!-- Page hero -->
 <div class="relative flex h-64 items-end overflow-hidden bg-[var(--color-forest)] sm:h-80">
 	<img
-		src="/images/resort/k-5.jpg"
+		src="/images/resort/k-5.webp"
 		alt="Kasalong Resort entrance"
+		fetchpriority="high" loading="eager"
 		class="absolute inset-0 h-full w-full object-cover opacity-35"
 	/>
 	<div class="relative z-10 w-full px-6 pb-12 lg:px-8">

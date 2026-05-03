@@ -22,7 +22,7 @@ export const facilities: Facility[] = [
 			'Our stunning resort pool features a signature flower mosaic design set against the backdrop of lush tropical gardens and traditional Thai architecture. A true centrepiece of the resort.',
 		details: ['Flower mosaic pool design', 'Sun loungers & deck chairs', 'Pool towels provided', 'Tropical garden setting', 'Terracotta pool deck'],
 		hours: '6:00 AM – 9:00 PM',
-		image: '/images/resort/k-81.jpg',
+		image: '/images/resort/k-81.webp',
 		icon: 'Waves'
 	},
 	{
@@ -32,7 +32,7 @@ export const facilities: Facility[] = [
 			'Dine beneath an exquisite gold-carved teak ceiling in our signature restaurant. Authentic Thai flavours and international cuisine served in a breathtakingly ornate setting.',
 		details: ['À la carte menu', 'Authentic Thai cuisine', 'International selections', 'In-room dining available', 'Private dining upon request'],
 		hours: '6:00 AM – 10:00 PM',
-		image: '/images/resort/k-16.jpg',
+		image: '/images/resort/k-16.webp',
 		icon: 'UtensilsCrossed'
 	},
 	{
@@ -41,7 +41,7 @@ export const facilities: Facility[] = [
 		description:
 			'Our grand Lanna-style event spaces — adorned with traditional amber lanterns and ornate Thai décor — create an unforgettable backdrop for conferences, seminars, and celebrations.',
 		details: ['3 dedicated event spaces', 'Full AV system', 'High-speed WiFi', 'In-house catering', 'Event coordination team'],
-		image: '/images/resort/hero-2.jpg',
+		image: '/images/resort/hero-2.webp',
 		icon: 'Building2'
 	}
 ];

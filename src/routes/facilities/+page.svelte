@@ -11,13 +11,23 @@
 <svelte:head>
 	<title>Facilities — Kasalong Resort and Spa Pattaya</title>
 	<meta name="description" content="Discover Kasalong's world-class facilities: resort pool, Thai dining, conference rooms, and more." />
+	<link rel="canonical" href="https://kasalongresort.com/facilities" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Facilities — Kasalong Resort and Spa Pattaya" />
+	<meta property="og:description" content="Discover Kasalong's world-class facilities: resort pool, Thai dining, conference rooms, and more." />
+	<meta property="og:image" content="https://kasalongresort.com/images/resort/k-81.webp" />
+	<meta property="og:url" content="https://kasalongresort.com/facilities" />
+	<meta name="twitter:title" content="Facilities — Kasalong Resort and Spa Pattaya" />
+	<meta name="twitter:description" content="Discover Kasalong's world-class facilities: resort pool, Thai dining, conference rooms, and more." />
+	<meta name="twitter:image" content="https://kasalongresort.com/images/resort/k-81.webp" />
 </svelte:head>
 
 <!-- Page hero -->
 <div class="relative flex h-72 items-end overflow-hidden bg-[var(--color-forest)] sm:h-96">
 	<img
-		src="/images/resort/k-81.jpg"
+		src="/images/resort/k-81.webp"
 		alt="Kasalong resort pool"
+		fetchpriority="high" loading="eager"
 		class="absolute inset-0 h-full w-full object-cover opacity-50"
 	/>
 	<div class="relative z-10 w-full px-6 pb-12 lg:px-8">

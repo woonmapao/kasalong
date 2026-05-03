@@ -122,10 +122,6 @@
 						<span>Dining</span>
 						<span class="text-white/70">{siteConfig.hours.dining}</span>
 					</li>
-					<li class="flex justify-between gap-4">
-						<span>Spa</span>
-						<span class="text-white/70">{siteConfig.hours.spa}</span>
-					</li>
 				</ul>
 			</div>
 		</div>

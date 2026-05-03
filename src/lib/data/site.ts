@@ -13,8 +13,7 @@ export const siteConfig = {
 	hours: {
 		reception: '24 hours',
 		pool: '6:00 AM – 9:00 PM',
-		dining: '6:00 AM – 10:00 PM',
-		spa: '10:00 AM – 9:00 PM'
+		dining: '6:00 AM – 10:00 PM'
 	},
 	nav: [
 		{ label: 'Home', href: '/' },

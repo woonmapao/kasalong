@@ -46,25 +46,25 @@
 			<AnimatedSection delay={150} class="hidden lg:block">
 				<div class="grid grid-cols-2 gap-4">
 					<img
-						src="/images/resort/interior-1.jpg"
+						src="/images/resort/interior-1.webp"
 						alt="Gold leaf lobby at Kasalong Resort"
 						class="h-64 w-full rounded-2xl object-cover shadow-[var(--shadow-card)]"
 						loading="lazy"
 					/>
 					<img
-						src="/images/resort/k-81.jpg"
+						src="/images/resort/k-81.webp"
 						alt="Resort pool with building reflections"
 						class="mt-8 h-64 w-full rounded-2xl object-cover shadow-[var(--shadow-card)]"
 						loading="lazy"
 					/>
 					<img
-						src="/images/resort/k-15.jpg"
+						src="/images/resort/k-15.webp"
 						alt="Restaurant with gold Thai murals"
 						class="-mt-4 h-48 w-full rounded-2xl object-cover shadow-[var(--shadow-card)]"
 						loading="lazy"
 					/>
 					<img
-						src="/images/resort/k-54.jpg"
+						src="/images/resort/k-54.webp"
 						alt="Deluxe room with ornate gold headboard"
 						class="h-48 w-full rounded-2xl object-cover shadow-[var(--shadow-card)]"
 						loading="lazy"

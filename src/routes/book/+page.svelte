@@ -10,13 +10,23 @@
 <svelte:head>
 	<title>Book Your Stay — Kasalong Resort and Spa Pattaya</title>
 	<meta name="description" content="Book Kasalong Resort and Spa Pattaya on your preferred platform: Agoda, Booking.com, Traveloka, Trip.com, Expedia or Ctrip." />
+	<link rel="canonical" href="https://kasalongresort.com/book" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Book Your Stay — Kasalong Resort and Spa Pattaya" />
+	<meta property="og:description" content="Book Kasalong Resort and Spa Pattaya on your preferred platform: Agoda, Booking.com, Traveloka, Trip.com, Expedia or Ctrip." />
+	<meta property="og:image" content="https://kasalongresort.com/images/resort/interior-1.webp" />
+	<meta property="og:url" content="https://kasalongresort.com/book" />
+	<meta name="twitter:title" content="Book Your Stay — Kasalong Resort and Spa Pattaya" />
+	<meta name="twitter:description" content="Book Kasalong Resort and Spa Pattaya on your preferred platform: Agoda, Booking.com, Traveloka, Trip.com, Expedia or Ctrip." />
+	<meta name="twitter:image" content="https://kasalongresort.com/images/resort/interior-1.webp" />
 </svelte:head>
 
 <!-- Hero -->
 <div class="relative flex h-64 items-end overflow-hidden bg-[var(--color-forest)] sm:h-80">
 	<img
-		src="/images/resort/interior-1.jpg"
+		src="/images/resort/interior-1.webp"
 		alt="Kasalong lobby"
+		fetchpriority="high" loading="eager"
 		class="absolute inset-0 h-full w-full object-cover opacity-30"
 	/>
 	<div class="relative z-10 w-full px-6 pb-12 text-center lg:px-8">

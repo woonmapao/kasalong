@@ -10,13 +10,23 @@
 <svelte:head>
 	<title>Nearby Attractions — Kasalong Resort and Spa Pattaya</title>
 	<meta name="description" content="Explore Pattaya's best attractions just minutes from Kasalong Resort: Walking Street, Pattaya Beach, Sanctuary of Truth, Floating Market and more." />
+	<link rel="canonical" href="https://kasalongresort.com/attractions" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Nearby Attractions — Kasalong Resort and Spa Pattaya" />
+	<meta property="og:description" content="Explore Pattaya's best attractions just minutes from Kasalong Resort: Walking Street, Pattaya Beach, Sanctuary of Truth, Floating Market and more." />
+	<meta property="og:image" content="https://kasalongresort.com/images/resort/interior-1.webp" />
+	<meta property="og:url" content="https://kasalongresort.com/attractions" />
+	<meta name="twitter:title" content="Nearby Attractions — Kasalong Resort and Spa Pattaya" />
+	<meta name="twitter:description" content="Explore Pattaya's best attractions just minutes from Kasalong Resort: Walking Street, Pattaya Beach, Sanctuary of Truth, Floating Market and more." />
+	<meta name="twitter:image" content="https://kasalongresort.com/images/resort/interior-1.webp" />
 </svelte:head>
 
 <!-- Page hero -->
 <div class="relative flex h-72 items-end overflow-hidden bg-[var(--color-forest)] sm:h-96">
 	<img
-		src="/images/resort/interior-2.jpg"
+		src="/images/resort/interior-2.webp"
 		alt="Kasalong Resort exterior"
+		fetchpriority="high" loading="eager"
 		class="absolute inset-0 h-full w-full object-cover opacity-50"
 	/>
 	<div class="relative z-10 w-full px-6 pb-12 lg:px-8">

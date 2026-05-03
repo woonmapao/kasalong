@@ -22,14 +22,24 @@
 
 <svelte:head>
 	<title>Gallery — Kasalong Resort and Spa Pattaya</title>
-	<meta name="description" content="Explore Kasalong Resort's photo gallery: rooms, spa, pool, dining, and the beautiful surroundings of Pattaya, Thailand." />
+	<meta name="description" content="Explore Kasalong Resort's photo gallery: rooms, pool, dining, and the beautiful surroundings of Pattaya, Thailand." />
+	<link rel="canonical" href="https://kasalongresort.com/gallery" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Gallery — Kasalong Resort and Spa Pattaya" />
+	<meta property="og:description" content="Explore Kasalong Resort's photo gallery: rooms, pool, dining, and the beautiful surroundings of Pattaya, Thailand." />
+	<meta property="og:image" content="https://kasalongresort.com/images/resort/k-182.webp" />
+	<meta property="og:url" content="https://kasalongresort.com/gallery" />
+	<meta name="twitter:title" content="Gallery — Kasalong Resort and Spa Pattaya" />
+	<meta name="twitter:description" content="Explore Kasalong Resort's photo gallery: rooms, pool, dining, and the beautiful surroundings of Pattaya, Thailand." />
+	<meta name="twitter:image" content="https://kasalongresort.com/images/resort/k-182.webp" />
 </svelte:head>
 
 <!-- Page hero -->
 <div class="relative flex h-72 items-end overflow-hidden bg-[var(--color-forest)] sm:h-80">
 	<img
-		src="/images/resort/k-3.jpg"
+		src="/images/resort/k-3.webp"
 		alt="Kasalong Resort main entrance"
+		fetchpriority="high" loading="eager"
 		class="absolute inset-0 h-full w-full object-cover opacity-50"
 	/>
 	<div class="relative z-10 w-full px-6 pb-12 lg:px-8">

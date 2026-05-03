@@ -10,13 +10,23 @@
 <svelte:head>
 	<title>Our Rooms — Kasalong Resort and Spa Pattaya</title>
 	<meta name="description" content="Choose from 5 elegant room types at Kasalong Resort: Standard, Superior, Deluxe, Pool Villa, and Junior Suite — each with Thai Lanna-inspired design." />
+	<link rel="canonical" href="https://kasalongresort.com/rooms" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Our Rooms — Kasalong Resort and Spa Pattaya" />
+	<meta property="og:description" content="Choose from 5 elegant room types at Kasalong Resort: Standard, Superior, Deluxe, Pool Villa, and Junior Suite — each with Thai Lanna-inspired design." />
+	<meta property="og:image" content="https://kasalongresort.com/images/resort/room-1.webp" />
+	<meta property="og:url" content="https://kasalongresort.com/rooms" />
+	<meta name="twitter:title" content="Our Rooms — Kasalong Resort and Spa Pattaya" />
+	<meta name="twitter:description" content="Choose from 5 elegant room types at Kasalong Resort: Standard, Superior, Deluxe, Pool Villa, and Junior Suite — each with Thai Lanna-inspired design." />
+	<meta name="twitter:image" content="https://kasalongresort.com/images/resort/room-1.webp" />
 </svelte:head>
 
 <!-- Page hero -->
 <div class="relative flex h-72 items-end overflow-hidden bg-[var(--color-forest)] sm:h-96">
 	<img
-		src="/images/resort/room-1.jpg"
+		src="/images/resort/room-1.webp"
 		alt="Junior Suite with gold leaf ceiling"
+		fetchpriority="high" loading="eager"
 		class="absolute inset-0 h-full w-full object-cover opacity-50"
 	/>
 	<div class="relative z-10 w-full px-6 pb-12 lg:px-8">

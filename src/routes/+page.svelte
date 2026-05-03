@@ -10,6 +10,16 @@
 <svelte:head>
 	<title>Kasalong Resort and Spa Pattaya — Thai Lanna Luxury</title>
 	<meta name="description" content="Experience the perfect blend of authentic Thai Lanna culture and modern luxury at Kasalong Resort and Spa, just 10 minutes from downtown Pattaya." />
+	<link rel="canonical" href="https://kasalongresort.com/" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Kasalong Resort and Spa Pattaya — Thai Lanna Luxury" />
+	<meta property="og:description" content="Experience the perfect blend of authentic Thai Lanna culture and modern luxury at Kasalong Resort and Spa, just 10 minutes from downtown Pattaya." />
+	<meta property="og:image" content="https://kasalongresort.com/images/resort/interior-1.webp" />
+	<meta property="og:url" content="https://kasalongresort.com/" />
+	<meta name="twitter:title" content="Kasalong Resort and Spa Pattaya — Thai Lanna Luxury" />
+	<meta name="twitter:description" content="Experience the perfect blend of authentic Thai Lanna culture and modern luxury at Kasalong Resort and Spa, just 10 minutes from downtown Pattaya." />
+	<meta name="twitter:image" content="https://kasalongresort.com/images/resort/interior-1.webp" />
+	<link rel="preload" as="image" href="/images/resort/k-5.webp" />
 </svelte:head>
 
 <HeroSection />
@@ -22,7 +32,7 @@
 <section class="relative overflow-hidden py-20">
 	<div
 		class="absolute inset-0 bg-cover bg-center"
-		style="background-image: url('/images/resort/k-16.jpg')"
+		style="background-image: url('/images/resort/k-16.webp')"
 	></div>
 	<div class="absolute inset-0 bg-[var(--color-ruby)]/85"></div>
 	<div class="relative z-10 mx-auto max-w-4xl px-6 text-center lg:px-8">

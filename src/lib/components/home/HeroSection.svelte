@@ -14,7 +14,7 @@
 	<!-- Real resort entrance photo -->
 	<div
 		class="absolute inset-0 bg-cover bg-center bg-no-repeat"
-		style="background-image: url('/images/resort/k-5.jpg')"
+		style="background-image: url('/images/resort/k-5.webp')"
 	></div>
 
 	<!-- Warm dark overlay — preserves the gold/red tones of the photo -->

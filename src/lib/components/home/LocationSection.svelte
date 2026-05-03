@@ -19,7 +19,7 @@
 			<!-- Real resort exterior image -->
 			<AnimatedSection class="relative">
 				<img
-					src="/images/resort/k-3.jpg"
+					src="/images/resort/k-3.webp"
 					alt="Kasalong Resort main entrance"
 					class="h-[500px] w-full rounded-2xl object-cover shadow-[var(--shadow-card-hover)]"
 					loading="lazy"

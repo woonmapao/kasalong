@@ -13,10 +13,25 @@
 
 <svelte:head>
 	<title>{room.name} — Kasalong Resort and Spa Pattaya</title>
-	<meta
-		name="description"
-		content="{room.name} at Kasalong Resort Pattaya — {room.size}, {room.bedType}. {room.description}"
-	/>
+	<meta name="description" content="{room.name} at Kasalong Resort Pattaya — {room.size}, {room.bedType}. {room.description}" />
+	<link rel="canonical" href="https://kasalongresort.com/rooms/{room.id}" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="{room.name} — Kasalong Resort and Spa Pattaya" />
+	<meta property="og:description" content="{room.name} at Kasalong Resort Pattaya — {room.size}, {room.bedType}. {room.description}" />
+	<meta property="og:image" content="https://kasalongresort.com{room.image}" />
+	<meta property="og:url" content="https://kasalongresort.com/rooms/{room.id}" />
+	<meta name="twitter:title" content="{room.name} — Kasalong Resort and Spa Pattaya" />
+	<meta name="twitter:description" content="{room.name} at Kasalong Resort Pattaya — {room.size}, {room.bedType}." />
+	<meta name="twitter:image" content="https://kasalongresort.com{room.image}" />
+	{@html `<script type="application/ld+json">${JSON.stringify({
+		'@context': 'https://schema.org',
+		'@type': 'BreadcrumbList',
+		itemListElement: [
+			{ '@type': 'ListItem', position: 1, name: 'Home', item: 'https://kasalongresort.com/' },
+			{ '@type': 'ListItem', position: 2, name: 'Rooms', item: 'https://kasalongresort.com/rooms' },
+			{ '@type': 'ListItem', position: 3, name: room.name, item: 'https://kasalongresort.com/rooms/' + room.id }
+		]
+	})}</script>`}
 </svelte:head>
 
 <!-- Page hero -->
@@ -24,6 +39,7 @@
 	<img
 		src={room.image}
 		alt={room.name}
+		fetchpriority="high" loading="eager"
 		class="absolute inset-0 h-full w-full object-cover opacity-55"
 	/>
 	<div
