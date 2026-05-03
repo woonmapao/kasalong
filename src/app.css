@@ -1,0 +1,92 @@
+@import "tailwindcss";
+@import "@fontsource/cormorant-garamond/400.css";
+@import "@fontsource/cormorant-garamond/600.css";
+@import "@fontsource/cormorant-garamond/700.css";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+
+@theme {
+	/* Brand Colors — Kasalong Thai Lanna */
+	--color-forest:      #1a3a2e;   /* Navbar / footer dark */
+	--color-emerald:     #2d5a45;
+	--color-teal:        #3d8b7a;
+	--color-ruby:        #6B1414;   /* Deep Lanna red — restaurant walls, bold sections */
+	--color-ruby-light:  #8B2020;
+	--color-gold:        #C9A84C;   /* Thai gold — ceilings, accents */
+	--color-amber:       #D4A830;   /* Warm amber */
+	--color-amber-light: #E8C97A;
+	--color-teak:        #5C3317;   /* Rich teak wood */
+	--color-terracotta:  #C65D31;   /* Exterior orange */
+	--color-cream:       #FAF7F0;   /* Page background */
+	--color-ivory:       #F2EDE0;
+	--color-warm-white:  #FFFDF8;
+	--color-charcoal:    #1C1C1E;
+	--color-stone:       #6B6456;
+	--color-muted:       #9C9488;
+
+	/* Typography */
+	--font-serif: "Cormorant Garamond", Georgia, serif;
+	--font-sans:  "Inter", system-ui, sans-serif;
+
+	/* Shadows */
+	--shadow-card:      0 4px 24px rgba(26, 58, 46, 0.10);
+	--shadow-card-hover: 0 12px 40px rgba(26, 58, 46, 0.18);
+	--shadow-gold:      0 4px 20px rgba(201, 168, 76, 0.30);
+}
+
+@layer base {
+	html {
+		scroll-behavior: smooth;
+	}
+
+	body {
+		font-family: var(--font-sans);
+		background-color: var(--color-cream);
+		color: var(--color-charcoal);
+		-webkit-font-smoothing: antialiased;
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		font-family: var(--font-serif);
+		font-weight: 600;
+		line-height: 1.15;
+	}
+}
+
+@layer utilities {
+	.font-serif {
+		font-family: var(--font-serif);
+	}
+
+	.text-shadow-hero {
+		text-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+	}
+}
+
+/* Scroll-reveal animation */
+@keyframes fadeUp {
+	from {
+		opacity: 0;
+		transform: translateY(28px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.animate-fade-up {
+	animation: fadeUp 0.7s ease forwards;
+}
+
+.reveal {
+	opacity: 0;
+	transform: translateY(28px);
+	transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+	opacity: 1;
+	transform: translateY(0);
+}

@@ -1,0 +1,37 @@
+{
+	"name": "kasalong",
+	"private": true,
+	"version": "0.0.1",
+	"type": "module",
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"prepare": "svelte-kit sync || echo ''",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+	},
+	"devDependencies": {
+		"@sveltejs/adapter-auto": "^7.0.1",
+		"@sveltejs/adapter-static": "^3.0.10",
+		"@sveltejs/kit": "^2.57.0",
+		"@sveltejs/vite-plugin-svelte": "^7.0.0",
+		"@tailwindcss/forms": "^0.5.11",
+		"@tailwindcss/typography": "^0.5.19",
+		"@tailwindcss/vite": "^4.2.4",
+		"svelte": "^5.55.2",
+		"svelte-check": "^4.4.6",
+		"tailwindcss": "^4.2.4",
+		"typescript": "^6.0.2",
+		"vite": "^8.0.7"
+	},
+	"dependencies": {
+		"@fontsource/cormorant-garamond": "^5.2.11",
+		"@fontsource/inter": "^5.2.8",
+		"clsx": "^2.1.1",
+		"embla-carousel": "^8.6.0",
+		"embla-carousel-svelte": "^8.6.0",
+		"lucide-svelte": "^1.0.1",
+		"tailwind-merge": "^3.5.0"
+	}
+}
