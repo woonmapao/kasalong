@@ -1,7 +1,6 @@
 export const siteConfig = {
 	name: 'Kasalong Resort and Spa',
 	shortName: 'Kasalong',
-	tagline: 'Experience the Perfect Blend of Thai Lanna Culture and Modern Luxury',
 	location: 'Pattaya, Thailand',
 	address: '258/11-12 M2, Naglua Banglamung, Chonburi 20150, Thailand',
 	phones: ['+66 98 429 1449', '+66 223 96(0-4)'],
@@ -16,11 +15,11 @@ export const siteConfig = {
 		dining: '6:00 AM – 10:00 PM'
 	},
 	nav: [
-		{ label: 'Home', href: '/' },
-		{ label: 'Our Rooms', href: '/rooms' },
-		{ label: 'Facilities', href: '/facilities' },
-		{ label: 'Attractions', href: '/attractions' },
-		{ label: 'Gallery', href: '/gallery' },
-		{ label: 'Contact', href: '/contact' }
+		{ key: 'home', path: '/' },
+		{ key: 'rooms', path: '/rooms' },
+		{ key: 'facilities', path: '/facilities' },
+		{ key: 'attractions', path: '/attractions' },
+		{ key: 'gallery', path: '/gallery' },
+		{ key: 'contact', path: '/contact' }
 	]
 };

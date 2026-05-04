@@ -4,20 +4,22 @@
 	import SectionHeading from '$lib/components/ui/SectionHeading.svelte';
 	import AnimatedSection from '$lib/components/ui/AnimatedSection.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
+	import { getI18n, localePath } from '$lib/i18n';
+	import type { LayoutData } from '../$types';
+
+	let { data }: { data: LayoutData } = $props();
+	const i18n = getI18n();
 </script>
 
 <svelte:head>
-	<title>Contact Us — Kasalong Resort and Spa Pattaya</title>
-	<meta name="description" content="Get in touch with Kasalong Resort and Spa Pattaya. Call, email, or send us a message. We're available 24 hours a day." />
-	<link rel="canonical" href="https://kasalongresort.com/contact" />
+	<title>{i18n.t('seo.contact.title')}</title>
+	<meta name="description" content={i18n.t('seo.contact.description')} />
+	<link rel="canonical" href="https://kasalongresort.com/{data.locale}/contact" />
 	<meta property="og:type" content="website" />
-	<meta property="og:title" content="Contact Us — Kasalong Resort and Spa Pattaya" />
-	<meta property="og:description" content="Get in touch with Kasalong Resort and Spa Pattaya. Call, email, or send us a message. We're available 24 hours a day." />
+	<meta property="og:title" content={i18n.t('seo.contact.title')} />
+	<meta property="og:description" content={i18n.t('seo.contact.description')} />
 	<meta property="og:image" content="https://kasalongresort.com/images/resort/interior-1.webp" />
-	<meta property="og:url" content="https://kasalongresort.com/contact" />
-	<meta name="twitter:title" content="Contact Us — Kasalong Resort and Spa Pattaya" />
-	<meta name="twitter:description" content="Get in touch with Kasalong Resort and Spa Pattaya. Call, email, or send us a message. We're available 24 hours a day." />
-	<meta name="twitter:image" content="https://kasalongresort.com/images/resort/interior-1.webp" />
+	<meta property="og:url" content="https://kasalongresort.com/{data.locale}/contact" />
 </svelte:head>
 
 <!-- Page hero -->
@@ -25,15 +27,18 @@
 	<img
 		src="/images/resort/k-5.webp"
 		alt="Kasalong Resort entrance"
-		fetchpriority="high" loading="eager"
+		fetchpriority="high"
+		loading="eager"
 		class="absolute inset-0 h-full w-full object-cover opacity-35"
 	/>
 	<div class="relative z-10 w-full px-6 pb-12 lg:px-8">
 		<div class="mx-auto max-w-7xl">
 			<p class="mb-2 text-xs font-light tracking-widest uppercase text-[var(--color-amber)]">
-				We'd Love to Hear From You
+				{i18n.t('contact.pagePreTitle')}
 			</p>
-			<h1 class="font-serif text-4xl font-semibold text-white sm:text-5xl">Contact Us</h1>
+			<h1 class="font-serif text-4xl font-semibold text-white sm:text-5xl">
+				{i18n.t('contact.pageTitle')}
+			</h1>
 		</div>
 	</div>
 </div>
@@ -42,8 +47,8 @@
 	<div class="mx-auto max-w-7xl px-6 lg:px-8">
 		<AnimatedSection class="flex flex-col items-center">
 			<SectionHeading
-				title="Get in Touch"
-				subtitle="Our team is available 24 hours a day to assist with reservations, enquiries, and anything else you need."
+				title={i18n.t('contact.sectionTitle')}
+				subtitle={i18n.t('contact.sectionSubtitle')}
 			/>
 		</AnimatedSection>
 
@@ -51,7 +56,9 @@
 			<!-- Form -->
 			<AnimatedSection>
 				<div class="rounded-2xl bg-white p-8 shadow-[var(--shadow-card)] lg:p-10">
-					<h2 class="mb-6 font-serif text-2xl text-[var(--color-forest)]">Send a Message</h2>
+					<h2 class="mb-6 font-serif text-2xl text-[var(--color-forest)]">
+						{i18n.t('contact.formTitle')}
+					</h2>
 					<ContactForm />
 				</div>
 			</AnimatedSection>
@@ -60,7 +67,9 @@
 			<AnimatedSection delay={100}>
 				<div class="space-y-8">
 					<div class="rounded-2xl bg-white p-8 shadow-[var(--shadow-card)]">
-						<h2 class="mb-6 font-serif text-2xl text-[var(--color-forest)]">Our Information</h2>
+						<h2 class="mb-6 font-serif text-2xl text-[var(--color-forest)]">
+							{i18n.t('contact.infoTitle')}
+						</h2>
 						<ContactInfo />
 					</div>
 
@@ -83,12 +92,12 @@
 
 		<!-- Book CTA -->
 		<AnimatedSection class="mt-16 rounded-2xl bg-[var(--color-ruby)] p-10 text-center">
-			<h2 class="font-serif text-2xl text-white sm:text-3xl">Ready to Book?</h2>
-			<p class="mt-3 text-white/60">
-				Skip the form and book directly through your preferred platform.
-			</p>
+			<h2 class="font-serif text-2xl text-white sm:text-3xl">{i18n.t('contact.ctaTitle')}</h2>
+			<p class="mt-3 text-white/60">{i18n.t('contact.ctaSubtitle')}</p>
 			<div class="mt-6">
-				<Button variant="gold" size="lg" href="/book">View Booking Options</Button>
+				<Button variant="gold" size="lg" href={localePath(data.locale, '/book')}>
+					{i18n.t('common.bookYourStay')}
+				</Button>
 			</div>
 		</AnimatedSection>
 	</div>

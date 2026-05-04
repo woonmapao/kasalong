@@ -1,16 +1,15 @@
 <script lang="ts">
-	import type { Facility } from '$lib/data/facilities';
+	import type { LocalizedFacility } from '$lib/i18n';
 	import { Clock, Check } from 'lucide-svelte';
 	import * as icons from 'lucide-svelte';
 
 	interface Props {
-		facility: Facility;
+		facility: LocalizedFacility;
 		imageLeft?: boolean;
 	}
 
 	let { facility, imageLeft = true }: Props = $props();
 
-	// Dynamically get the icon component
 	const IconComponent = $derived((icons as Record<string, unknown>)[facility.icon] as typeof icons.Waves);
 </script>
 

@@ -1,7 +1,9 @@
 <script lang="ts">
 	import { siteConfig } from '$lib/data/site';
+	import { getI18n, localePath } from '$lib/i18n';
 	import { Phone, Mail, MapPin } from 'lucide-svelte';
 
+	const i18n = getI18n();
 	const year = new Date().getFullYear();
 </script>
 
@@ -18,7 +20,7 @@
 					</span>
 				</div>
 				<p class="mt-4 text-sm leading-relaxed text-white/50">
-					A premium Thai Lanna cultural experience in the heart of Pattaya, Thailand.
+					{i18n.t('footer.tagline')}
 				</p>
 				<!-- Social -->
 				<div class="mt-5 flex gap-3">
@@ -50,21 +52,23 @@
 			<!-- Navigation -->
 			<div>
 				<h3 class="mb-5 text-xs font-semibold uppercase tracking-widest text-[var(--color-gold)]">
-					Explore
+					{i18n.t('footer.explore')}
 				</h3>
 				<ul class="space-y-3">
 					{#each siteConfig.nav as item}
 						<li>
 							<a
-								href={item.href}
+								href={localePath(i18n.locale, item.path)}
 								class="text-sm text-white/50 transition hover:text-white"
 							>
-								{item.label}
+								{i18n.t(`nav.${item.key}`)}
 							</a>
 						</li>
 					{/each}
 					<li>
-						<a href="/book" class="text-sm text-white/50 transition hover:text-white">Book Now</a>
+						<a href={localePath(i18n.locale, '/book')} class="text-sm text-white/50 transition hover:text-white">
+							{i18n.t('footer.bookNow')}
+						</a>
 					</li>
 				</ul>
 			</div>
@@ -72,7 +76,7 @@
 			<!-- Contact -->
 			<div>
 				<h3 class="mb-5 text-xs font-semibold uppercase tracking-widest text-[var(--color-gold)]">
-					Contact
+					{i18n.t('footer.contact')}
 				</h3>
 				<ul class="space-y-4">
 					<li class="flex gap-3 text-sm text-white/50">
@@ -107,19 +111,19 @@
 			<!-- Hours -->
 			<div>
 				<h3 class="mb-5 text-xs font-semibold uppercase tracking-widest text-[var(--color-gold)]">
-					Hours
+					{i18n.t('footer.hours')}
 				</h3>
 				<ul class="space-y-3 text-sm text-white/50">
 					<li class="flex justify-between gap-4">
-						<span>Reception</span>
+						<span>{i18n.t('footer.hoursReception')}</span>
 						<span class="text-white/70">{siteConfig.hours.reception}</span>
 					</li>
 					<li class="flex justify-between gap-4">
-						<span>Pool</span>
+						<span>{i18n.t('footer.hoursPool')}</span>
 						<span class="text-white/70">{siteConfig.hours.pool}</span>
 					</li>
 					<li class="flex justify-between gap-4">
-						<span>Dining</span>
+						<span>{i18n.t('footer.hoursDining')}</span>
 						<span class="text-white/70">{siteConfig.hours.dining}</span>
 					</li>
 				</ul>
@@ -130,7 +134,7 @@
 	<!-- Bottom bar -->
 	<div class="border-t border-white/10">
 		<div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6 py-5 text-xs text-white/30 sm:flex-row lg:px-8">
-			<span>&copy; {year} {siteConfig.name}. All rights reserved.</span>
+			<span>&copy; {year} {siteConfig.name}. {i18n.t('footer.rights')}</span>
 			<span>Pattaya, Chonburi, Thailand</span>
 		</div>
 	</div>

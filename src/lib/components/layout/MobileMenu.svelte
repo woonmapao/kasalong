@@ -1,6 +1,9 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import { goto } from '$app/navigation';
 	import { siteConfig } from '$lib/data/site';
+	import { getI18n, localePath } from '$lib/i18n';
+	import { LOCALES } from '$lib/i18n/locales';
 	import { X, Phone, Mail } from 'lucide-svelte';
 
 	interface Props {
@@ -8,6 +11,7 @@
 	}
 
 	let { open = $bindable() }: Props = $props();
+	const i18n = getI18n();
 
 	$effect(() => {
 		if (open) {
@@ -16,6 +20,18 @@
 			document.body.style.overflow = '';
 		}
 	});
+
+	// Active path detection
+	const currentPath = $derived(
+		$page.url.pathname.replace(/^\/[a-z]{2}(\/|$)/, '/').replace(/\/+$/, '') || '/'
+	);
+
+	function switchLocale(code: string) {
+		const strippedPath = $page.url.pathname.replace(/^\/[a-z]{2}(\/|$)/, '/') || '/';
+		localStorage.setItem('kasalong-locale', code);
+		goto(`/${code}${strippedPath === '/' ? '/' : strippedPath}`);
+		open = false;
+	}
 </script>
 
 <!-- Backdrop -->
@@ -55,15 +71,15 @@
 		<nav class="flex flex-col gap-1" aria-label="Mobile navigation">
 			{#each siteConfig.nav as item, i}
 				<a
-					href={item.href}
+					href={localePath(i18n.locale, item.path)}
 					onclick={() => (open = false)}
 					style="transition-delay: {i * 40}ms"
 					class="rounded-lg px-4 py-3 text-base font-medium transition-all duration-200
-						{$page.url.pathname === item.href
+						{currentPath === item.path
 						? 'bg-white/10 text-[var(--color-gold)]'
 						: 'text-white/80 hover:bg-white/5 hover:text-white'}"
 				>
-					{item.label}
+					{i18n.t(`nav.${item.key}`)}
 				</a>
 			{/each}
 		</nav>
@@ -71,12 +87,32 @@
 		<!-- Book now CTA -->
 		<div class="mt-4">
 			<a
-				href="/book"
+				href={localePath(i18n.locale, '/book')}
 				onclick={() => (open = false)}
 				class="flex w-full items-center justify-center rounded-lg bg-[var(--color-gold)] px-6 py-3 text-sm font-semibold text-[var(--color-forest)] transition-colors hover:bg-[var(--color-amber)]"
 			>
-				Book Now
+				{i18n.t('common.bookNow')}
 			</a>
+		</div>
+
+		<!-- Language switcher grid -->
+		<div class="mt-6">
+			<div class="mb-2 text-[10px] font-semibold uppercase tracking-widest text-white/40">Language</div>
+			<div class="grid grid-cols-5 gap-2">
+				{#each LOCALES as loc}
+					<button
+						onclick={() => switchLocale(loc.code)}
+						title={loc.name}
+						class="flex flex-col items-center gap-1 rounded-lg py-2 text-center text-[10px] font-medium transition-all
+							{loc.code === i18n.locale
+							? 'bg-[var(--color-gold)] text-[var(--color-forest)]'
+							: 'border border-white/15 text-white/60 hover:border-white/30 hover:text-white'}"
+					>
+						<span class="text-lg leading-none">{loc.flag}</span>
+						<span class="uppercase">{loc.code}</span>
+					</button>
+				{/each}
+			</div>
 		</div>
 
 		<!-- Contact info -->

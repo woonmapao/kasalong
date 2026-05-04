@@ -1,24 +1,27 @@
 <script lang="ts">
 	import { attractions } from '$lib/data/attractions';
+	import { getI18n, localePath, localizeAttractions } from '$lib/i18n';
 	import SectionHeading from '$lib/components/ui/SectionHeading.svelte';
 	import AnimatedSection from '$lib/components/ui/AnimatedSection.svelte';
 	import Divider from '$lib/components/ui/Divider.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
 	import { MapPin, Clock } from 'lucide-svelte';
+	import type { LayoutData } from '../$types';
+
+	let { data }: { data: LayoutData } = $props();
+	const i18n = getI18n();
+	const localizedAttractions = $derived(localizeAttractions(attractions, data.translations));
 </script>
 
 <svelte:head>
-	<title>Nearby Attractions — Kasalong Resort and Spa Pattaya</title>
-	<meta name="description" content="Explore Pattaya's best attractions just minutes from Kasalong Resort: Walking Street, Pattaya Beach, Sanctuary of Truth, Floating Market and more." />
-	<link rel="canonical" href="https://kasalongresort.com/attractions" />
+	<title>{i18n.t('seo.attractions.title')}</title>
+	<meta name="description" content={i18n.t('seo.attractions.description')} />
+	<link rel="canonical" href="https://kasalongresort.com/{data.locale}/attractions" />
 	<meta property="og:type" content="website" />
-	<meta property="og:title" content="Nearby Attractions — Kasalong Resort and Spa Pattaya" />
-	<meta property="og:description" content="Explore Pattaya's best attractions just minutes from Kasalong Resort: Walking Street, Pattaya Beach, Sanctuary of Truth, Floating Market and more." />
+	<meta property="og:title" content={i18n.t('seo.attractions.title')} />
+	<meta property="og:description" content={i18n.t('seo.attractions.description')} />
 	<meta property="og:image" content="https://kasalongresort.com/images/resort/interior-1.webp" />
-	<meta property="og:url" content="https://kasalongresort.com/attractions" />
-	<meta name="twitter:title" content="Nearby Attractions — Kasalong Resort and Spa Pattaya" />
-	<meta name="twitter:description" content="Explore Pattaya's best attractions just minutes from Kasalong Resort: Walking Street, Pattaya Beach, Sanctuary of Truth, Floating Market and more." />
-	<meta name="twitter:image" content="https://kasalongresort.com/images/resort/interior-1.webp" />
+	<meta property="og:url" content="https://kasalongresort.com/{data.locale}/attractions" />
 </svelte:head>
 
 <!-- Page hero -->
@@ -26,15 +29,18 @@
 	<img
 		src="/images/resort/interior-2.webp"
 		alt="Kasalong Resort exterior"
-		fetchpriority="high" loading="eager"
+		fetchpriority="high"
+		loading="eager"
 		class="absolute inset-0 h-full w-full object-cover opacity-50"
 	/>
 	<div class="relative z-10 w-full px-6 pb-12 lg:px-8">
 		<div class="mx-auto max-w-7xl">
 			<p class="mb-2 text-xs font-light tracking-widest uppercase text-[var(--color-amber)]">
-				Explore Pattaya
+				{i18n.t('attractions.pagePreTitle')}
 			</p>
-			<h1 class="font-serif text-4xl font-semibold text-white sm:text-5xl">Nearby Attractions</h1>
+			<h1 class="font-serif text-4xl font-semibold text-white sm:text-5xl">
+				{i18n.t('attractions.pageTitle')}
+			</h1>
 		</div>
 	</div>
 </div>
@@ -43,14 +49,14 @@
 	<div class="mx-auto max-w-7xl px-6 lg:px-8">
 		<AnimatedSection class="flex flex-col items-center">
 			<SectionHeading
-				title="Discover Pattaya"
-				subtitle="Our prime location puts Pattaya's most iconic attractions at your doorstep. Explore beaches, cultural landmarks, and vibrant entertainment — all within easy reach."
+				title={i18n.t('attractions.sectionTitle')}
+				subtitle={i18n.t('attractions.sectionSubtitle')}
 			/>
 			<Divider />
 		</AnimatedSection>
 
 		<div class="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-			{#each attractions as attraction, i}
+			{#each localizedAttractions as attraction, i}
 				<AnimatedSection delay={i * 80}>
 					<article class="group overflow-hidden rounded-2xl bg-white shadow-[var(--shadow-card)] transition-shadow hover:shadow-[var(--shadow-card-hover)]">
 						<div class="relative h-56 overflow-hidden">
@@ -91,13 +97,15 @@
 
 		<!-- CTA -->
 		<AnimatedSection class="mt-16 rounded-2xl bg-[var(--color-ruby)] p-10 text-center">
-			<h2 class="font-serif text-2xl text-white sm:text-3xl">Ready to Start Exploring?</h2>
-			<p class="mt-3 text-white/60">
-				Our friendly reception team can arrange tours, transfers, and local recommendations.
-			</p>
+			<h2 class="font-serif text-2xl text-white sm:text-3xl">{i18n.t('attractions.ctaTitle')}</h2>
+			<p class="mt-3 text-white/60">{i18n.t('attractions.ctaSubtitle')}</p>
 			<div class="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-				<Button variant="gold" href="/book">Book Your Stay</Button>
-				<Button variant="ghost" href="/contact">Ask the Team</Button>
+				<Button variant="gold" href={localePath(data.locale, '/book')}>
+					{i18n.t('common.bookYourStay')}
+				</Button>
+				<Button variant="ghost" href={localePath(data.locale, '/contact')}>
+					{i18n.t('common.askTheTeam')}
+				</Button>
 			</div>
 		</AnimatedSection>
 	</div>

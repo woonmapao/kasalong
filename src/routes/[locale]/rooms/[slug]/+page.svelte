@@ -2,34 +2,38 @@
 	import Button from '$lib/components/ui/Button.svelte';
 	import AnimatedSection from '$lib/components/ui/AnimatedSection.svelte';
 	import Divider from '$lib/components/ui/Divider.svelte';
+	import { getI18n, localePath, localizeRooms } from '$lib/i18n';
 	import { Users, Maximize2, BedDouble, Check, ChevronRight } from 'lucide-svelte';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
-	const room = $derived(data.room);
+	const i18n = getI18n();
+
+	const room = $derived(localizeRooms([data.roomData], data.translations)[0]);
 	const allImages = $derived([room.image, ...(room.images ?? [])]);
 	let activeImage = $state(0);
+
+	function secureYourRoom(name: string): string {
+		return i18n.t('rooms.secureYourRoom').replace('{name}', name);
+	}
 </script>
 
 <svelte:head>
 	<title>{room.name} — Kasalong Resort and Spa Pattaya</title>
 	<meta name="description" content="{room.name} at Kasalong Resort Pattaya — {room.size}, {room.bedType}. {room.description}" />
-	<link rel="canonical" href="https://kasalongresort.com/rooms/{room.id}" />
+	<link rel="canonical" href="https://kasalongresort.com/{data.locale}/rooms/{room.id}" />
 	<meta property="og:type" content="website" />
 	<meta property="og:title" content="{room.name} — Kasalong Resort and Spa Pattaya" />
 	<meta property="og:description" content="{room.name} at Kasalong Resort Pattaya — {room.size}, {room.bedType}. {room.description}" />
 	<meta property="og:image" content="https://kasalongresort.com{room.image}" />
-	<meta property="og:url" content="https://kasalongresort.com/rooms/{room.id}" />
-	<meta name="twitter:title" content="{room.name} — Kasalong Resort and Spa Pattaya" />
-	<meta name="twitter:description" content="{room.name} at Kasalong Resort Pattaya — {room.size}, {room.bedType}." />
-	<meta name="twitter:image" content="https://kasalongresort.com{room.image}" />
+	<meta property="og:url" content="https://kasalongresort.com/{data.locale}/rooms/{room.id}" />
 	{@html `<script type="application/ld+json">${JSON.stringify({
 		'@context': 'https://schema.org',
 		'@type': 'BreadcrumbList',
 		itemListElement: [
-			{ '@type': 'ListItem', position: 1, name: 'Home', item: 'https://kasalongresort.com/' },
-			{ '@type': 'ListItem', position: 2, name: 'Rooms', item: 'https://kasalongresort.com/rooms' },
-			{ '@type': 'ListItem', position: 3, name: room.name, item: 'https://kasalongresort.com/rooms/' + room.id }
+			{ '@type': 'ListItem', position: 1, name: 'Home', item: `https://kasalongresort.com/${data.locale}/` },
+			{ '@type': 'ListItem', position: 2, name: 'Rooms', item: `https://kasalongresort.com/${data.locale}/rooms` },
+			{ '@type': 'ListItem', position: 3, name: room.name, item: `https://kasalongresort.com/${data.locale}/rooms/${room.id}` }
 		]
 	})}</script>`}
 </svelte:head>
@@ -39,7 +43,8 @@
 	<img
 		src={room.image}
 		alt={room.name}
-		fetchpriority="high" loading="eager"
+		fetchpriority="high"
+		loading="eager"
 		class="absolute inset-0 h-full w-full object-cover opacity-55"
 	/>
 	<div
@@ -50,14 +55,18 @@
 		<div class="mx-auto max-w-7xl">
 			<!-- Breadcrumb -->
 			<nav class="mb-3 flex items-center gap-1.5 text-xs text-white/60">
-				<a href="/" class="hover:text-white/90 transition-colors">Home</a>
+				<a href={localePath(data.locale, '/')} class="hover:text-white/90 transition-colors">
+					{i18n.t('rooms.breadcrumbHome')}
+				</a>
 				<ChevronRight size={12} />
-				<a href="/rooms" class="hover:text-white/90 transition-colors">Rooms</a>
+				<a href={localePath(data.locale, '/rooms')} class="hover:text-white/90 transition-colors">
+					{i18n.t('rooms.breadcrumbRooms')}
+				</a>
 				<ChevronRight size={12} />
 				<span class="text-[var(--color-amber-light)]">{room.name}</span>
 			</nav>
 			<p class="mb-2 text-xs font-light tracking-widest uppercase text-[var(--color-amber)]">
-				Accommodation
+				{i18n.t('rooms.pagePreTitle')}
 			</p>
 			<h1 class="font-serif text-4xl font-semibold text-white sm:text-5xl">{room.name}</h1>
 		</div>
@@ -76,40 +85,47 @@
 					<div class="flex items-center gap-2.5 rounded-xl bg-white px-4 py-3 shadow-sm">
 						<Maximize2 size={16} class="text-[var(--color-teal)]" />
 						<div>
-							<p class="text-[10px] font-medium uppercase tracking-wider text-[var(--color-muted)]">Size</p>
+							<p class="text-[10px] font-medium uppercase tracking-wider text-[var(--color-muted)]">
+								{i18n.t('rooms.specsSize')}
+							</p>
 							<p class="text-sm font-semibold text-[var(--color-forest)]">{room.size}</p>
 						</div>
 					</div>
 					<div class="flex items-center gap-2.5 rounded-xl bg-white px-4 py-3 shadow-sm">
 						<Users size={16} class="text-[var(--color-teal)]" />
 						<div>
-							<p class="text-[10px] font-medium uppercase tracking-wider text-[var(--color-muted)]">Capacity</p>
+							<p class="text-[10px] font-medium uppercase tracking-wider text-[var(--color-muted)]">
+								{i18n.t('rooms.specsCapacity')}
+							</p>
 							<p class="text-sm font-semibold text-[var(--color-forest)]">{room.capacity}</p>
 						</div>
 					</div>
 					<div class="flex items-center gap-2.5 rounded-xl bg-white px-4 py-3 shadow-sm">
 						<BedDouble size={16} class="text-[var(--color-teal)]" />
 						<div>
-							<p class="text-[10px] font-medium uppercase tracking-wider text-[var(--color-muted)]">Bed</p>
+							<p class="text-[10px] font-medium uppercase tracking-wider text-[var(--color-muted)]">
+								{i18n.t('rooms.specsBed')}
+							</p>
 							<p class="text-sm font-semibold text-[var(--color-forest)]">{room.bedType}</p>
 						</div>
 					</div>
 				</div>
 
-				<!-- Ornament + heading -->
 				<div class="mt-8 flex items-center gap-2">
 					<div class="h-px w-8 bg-[var(--color-gold)]"></div>
 					<div class="h-1.5 w-1.5 rotate-45 bg-[var(--color-gold)]"></div>
 					<div class="h-px w-8 bg-[var(--color-gold)]"></div>
 				</div>
-				<h2 class="mt-4 font-serif text-2xl text-[var(--color-forest)] sm:text-3xl">About This Room</h2>
+				<h2 class="mt-4 font-serif text-2xl text-[var(--color-forest)] sm:text-3xl">
+					{i18n.t('rooms.aboutRoom')}
+				</h2>
 
 				<p class="mt-4 text-base leading-relaxed text-[var(--color-stone)]">{room.description}</p>
 
 				<!-- Amenities -->
 				<div class="mt-8">
 					<h3 class="mb-4 text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)]">
-						Room Amenities
+						{i18n.t('rooms.amenities')}
 					</h3>
 					<ul class="grid grid-cols-2 gap-2.5 sm:grid-cols-3">
 						{#each room.features as feature}
@@ -123,8 +139,12 @@
 
 				<!-- CTAs -->
 				<div class="mt-10 flex flex-wrap gap-3">
-					<Button variant="gold" size="lg" href="/book">Book This Room</Button>
-					<Button variant="secondary" size="lg" href="/contact">Enquire</Button>
+					<Button variant="gold" size="lg" href={localePath(data.locale, '/book')}>
+						{i18n.t('common.bookThisRoom')}
+					</Button>
+					<Button variant="secondary" size="lg" href={localePath(data.locale, '/contact')}>
+						{i18n.t('common.enquire')}
+					</Button>
 				</div>
 			</AnimatedSection>
 
@@ -163,16 +183,20 @@
 <section class="bg-[var(--color-forest)] py-16">
 	<AnimatedSection class="mx-auto max-w-3xl px-6 text-center lg:px-8">
 		<p class="text-xs font-light tracking-[0.3em] uppercase text-[var(--color-amber-light)]">
-			Ready to experience it?
+			{i18n.t('rooms.readyToExperience')}
 		</p>
-		<h2 class="mt-3 font-serif text-3xl text-white sm:text-4xl">Book Your Stay at Kasalong</h2>
-		<p class="mt-3 text-white/60">
-			Secure your {room.name} and enjoy an unforgettable Thai Lanna experience in Pattaya.
-		</p>
+		<h2 class="mt-3 font-serif text-3xl text-white sm:text-4xl">
+			{i18n.t('rooms.bookYourStayAtKasalong')}
+		</h2>
+		<p class="mt-3 text-white/60">{secureYourRoom(room.name)}</p>
 		<Divider light />
 		<div class="flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-			<Button variant="gold" size="lg" href="/book">Reserve Now</Button>
-			<Button variant="ghost" size="lg" href="/rooms">View All Rooms</Button>
+			<Button variant="gold" size="lg" href={localePath(data.locale, '/book')}>
+				{i18n.t('common.reserveNow')}
+			</Button>
+			<Button variant="ghost" size="lg" href={localePath(data.locale, '/rooms')}>
+				{i18n.t('common.viewAllRooms')}
+			</Button>
 		</div>
 	</AnimatedSection>
 </section>

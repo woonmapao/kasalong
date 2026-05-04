@@ -1,6 +1,9 @@
 <script lang="ts">
 	import { siteConfig } from '$lib/data/site';
+	import { getI18n } from '$lib/i18n';
 	import { MapPin, Phone, Mail, Clock, MessageCircle } from 'lucide-svelte';
+
+	const i18n = getI18n();
 </script>
 
 <div class="space-y-8">
@@ -10,7 +13,9 @@
 			<MapPin size={18} class="text-[var(--color-forest)]" />
 		</div>
 		<div>
-			<div class="text-xs font-semibold uppercase tracking-wide text-[var(--color-muted)]">Address</div>
+			<div class="text-xs font-semibold uppercase tracking-wide text-[var(--color-muted)]">
+				{i18n.t('contact.infoAddress')}
+			</div>
 			<p class="mt-1 text-sm leading-relaxed text-[var(--color-charcoal)]">{siteConfig.address}</p>
 		</div>
 	</div>
@@ -21,7 +26,9 @@
 			<Phone size={18} class="text-[var(--color-forest)]" />
 		</div>
 		<div>
-			<div class="text-xs font-semibold uppercase tracking-wide text-[var(--color-muted)]">Telephone</div>
+			<div class="text-xs font-semibold uppercase tracking-wide text-[var(--color-muted)]">
+				{i18n.t('contact.infoTelephone')}
+			</div>
 			{#each siteConfig.phones as phone}
 				<a href="tel:{phone}" class="mt-1 block text-sm text-[var(--color-charcoal)] hover:text-[var(--color-teal)]">
 					{phone}
@@ -36,16 +43,22 @@
 			<Mail size={18} class="text-[var(--color-forest)]" />
 		</div>
 		<div>
-			<div class="text-xs font-semibold uppercase tracking-wide text-[var(--color-muted)]">Email</div>
+			<div class="text-xs font-semibold uppercase tracking-wide text-[var(--color-muted)]">
+				{i18n.t('contact.infoEmail')}
+			</div>
 			<div class="mt-1 space-y-1">
 				<div>
-					<div class="text-[10px] uppercase tracking-wide text-[var(--color-muted)]">Reservations</div>
+					<div class="text-[10px] uppercase tracking-wide text-[var(--color-muted)]">
+						{i18n.t('contact.infoReservations')}
+					</div>
 					<a href="mailto:{siteConfig.emails[0]}" class="text-sm text-[var(--color-charcoal)] hover:text-[var(--color-teal)]">
 						{siteConfig.emails[0]}
 					</a>
 				</div>
 				<div>
-					<div class="text-[10px] uppercase tracking-wide text-[var(--color-muted)]">General</div>
+					<div class="text-[10px] uppercase tracking-wide text-[var(--color-muted)]">
+						{i18n.t('contact.infoGeneral')}
+					</div>
 					<a href="mailto:{siteConfig.emails[1]}" class="text-sm text-[var(--color-charcoal)] hover:text-[var(--color-teal)]">
 						{siteConfig.emails[1]}
 					</a>
@@ -60,21 +73,31 @@
 			<Clock size={18} class="text-[var(--color-forest)]" />
 		</div>
 		<div>
-			<div class="text-xs font-semibold uppercase tracking-wide text-[var(--color-muted)]">Hours</div>
+			<div class="text-xs font-semibold uppercase tracking-wide text-[var(--color-muted)]">
+				{i18n.t('contact.infoHours')}
+			</div>
 			<dl class="mt-1 space-y-1 text-sm">
-				{#each Object.entries(siteConfig.hours) as [key, val]}
-					<div class="flex justify-between gap-8">
-						<dt class="capitalize text-[var(--color-stone)]">{key}</dt>
-						<dd class="text-[var(--color-charcoal)]">{val}</dd>
-					</div>
-				{/each}
+				<div class="flex justify-between gap-8">
+					<dt class="capitalize text-[var(--color-stone)]">{i18n.t('footer.hoursReception')}</dt>
+					<dd class="text-[var(--color-charcoal)]">{siteConfig.hours.reception}</dd>
+				</div>
+				<div class="flex justify-between gap-8">
+					<dt class="capitalize text-[var(--color-stone)]">{i18n.t('footer.hoursPool')}</dt>
+					<dd class="text-[var(--color-charcoal)]">{siteConfig.hours.pool}</dd>
+				</div>
+				<div class="flex justify-between gap-8">
+					<dt class="capitalize text-[var(--color-stone)]">{i18n.t('footer.hoursDining')}</dt>
+					<dd class="text-[var(--color-charcoal)]">{siteConfig.hours.dining}</dd>
+				</div>
 			</dl>
 		</div>
 	</div>
 
 	<!-- Social -->
 	<div class="border-t border-[var(--color-ivory)] pt-6">
-		<div class="text-xs font-semibold uppercase tracking-wide text-[var(--color-muted)]">Connect with us</div>
+		<div class="text-xs font-semibold uppercase tracking-wide text-[var(--color-muted)]">
+			{i18n.t('contact.infoConnect')}
+		</div>
 		<div class="mt-3 flex gap-3">
 			<a
 				href={siteConfig.social.facebook}

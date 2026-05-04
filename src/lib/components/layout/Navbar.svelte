@@ -2,18 +2,26 @@
 	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
 	import { siteConfig } from '$lib/data/site';
+	import { getI18n, localePath } from '$lib/i18n';
 	import Button from '$lib/components/ui/Button.svelte';
 	import MobileMenu from './MobileMenu.svelte';
+	import LanguageSwitcher from './LanguageSwitcher.svelte';
 	import { Menu } from 'lucide-svelte';
 
 	let isScrolled = $state(false);
 	let mobileOpen = $state(false);
+	const i18n = getI18n();
 
 	onMount(() => {
 		const onScroll = () => (isScrolled = window.scrollY > 80);
 		window.addEventListener('scroll', onScroll, { passive: true });
 		return () => window.removeEventListener('scroll', onScroll);
 	});
+
+	// Active path detection: strip locale prefix for comparison
+	const currentPath = $derived(
+		$page.url.pathname.replace(/^\/[a-z]{2}(\/|$)/, '/').replace(/\/+$/, '') || '/'
+	);
 </script>
 
 <header
@@ -23,7 +31,7 @@
 >
 	<div class="mx-auto flex max-w-7xl items-center justify-between px-6 lg:px-8">
 		<!-- Logo -->
-		<a href="/" class="flex flex-col leading-none" aria-label="{siteConfig.name} home">
+		<a href={localePath(i18n.locale, '/')} class="flex flex-col leading-none" aria-label="{siteConfig.name} home">
 			<span class="font-serif text-xl font-semibold tracking-wide text-white">
 				{siteConfig.shortName}
 			</span>
@@ -36,20 +44,23 @@
 		<nav class="hidden items-center gap-8 lg:flex" aria-label="Main navigation">
 			{#each siteConfig.nav as item}
 				<a
-					href={item.href}
+					href={localePath(i18n.locale, item.path)}
 					class="text-sm font-medium tracking-wide transition-colors duration-200
-						{$page.url.pathname === item.href
+						{currentPath === item.path
 						? 'text-[var(--color-gold)]'
 						: 'text-white/80 hover:text-white'}"
 				>
-					{item.label}
+					{i18n.t(`nav.${item.key}`)}
 				</a>
 			{/each}
 		</nav>
 
-		<!-- CTA + Mobile toggle -->
-		<div class="flex items-center gap-3">
-			<Button variant="gold" size="sm" href="/book" class="hidden sm:inline-flex">Book Now</Button>
+		<!-- CTA + Language + Mobile toggle -->
+		<div class="flex items-center gap-2">
+			<LanguageSwitcher />
+			<Button variant="gold" size="sm" href={localePath(i18n.locale, '/book')} class="hidden sm:inline-flex">
+				{i18n.t('common.bookNow')}
+			</Button>
 			<button
 				class="flex h-10 w-10 items-center justify-center rounded-md text-white lg:hidden"
 				onclick={() => (mobileOpen = true)}

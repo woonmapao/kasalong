@@ -1,14 +1,16 @@
 <script lang="ts">
-	import type { Room } from '$lib/data/rooms';
+	import type { LocalizedRoom } from '$lib/i18n';
+	import { getI18n, localePath } from '$lib/i18n';
 	import Button from '$lib/components/ui/Button.svelte';
 	import { Users, Maximize2, BedDouble, Check } from 'lucide-svelte';
 
 	interface Props {
-		room: Room;
+		room: LocalizedRoom;
 	}
 
 	let { room }: Props = $props();
 	let showFeatures = $state(false);
+	const i18n = getI18n();
 </script>
 
 <article class="group overflow-hidden rounded-2xl bg-white shadow-[var(--shadow-card)] transition-shadow duration-300 hover:shadow-[var(--shadow-card-hover)]">
@@ -55,7 +57,7 @@
 			class="mt-4 text-xs font-medium text-[var(--color-teal)] hover:underline"
 			onclick={() => (showFeatures = !showFeatures)}
 		>
-			{showFeatures ? 'Hide amenities ↑' : 'View amenities ↓'}
+			{showFeatures ? i18n.t('common.hideAmenities') : i18n.t('common.viewAmenities')}
 		</button>
 
 		{#if showFeatures}
@@ -70,9 +72,11 @@
 		{/if}
 
 		<div class="mt-5 flex flex-col gap-2 border-t border-[var(--color-ivory)] pt-4">
-			<Button variant="gold" size="sm" href="/book" class="w-full">Book This Room</Button>
+			<Button variant="gold" size="sm" href={localePath(i18n.locale, '/book')} class="w-full">
+				{i18n.t('common.bookThisRoom')}
+			</Button>
 			<a
-				href="/rooms/{room.id}"
+				href={localePath(i18n.locale, `/rooms/${room.id}`)}
 				class="text-center text-xs font-medium text-[var(--color-teal)] hover:underline"
 			>
 				View Details →

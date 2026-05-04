@@ -4,17 +4,20 @@
 	import Divider from '$lib/components/ui/Divider.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
 	import { rooms } from '$lib/data/rooms';
+	import { getI18n, localePath, localizeRooms } from '$lib/i18n';
 	import { Users, Maximize2 } from 'lucide-svelte';
 
-	const featuredRooms = rooms.filter((r) => r.featured);
+	const i18n = getI18n();
+	const localizedRooms = $derived(localizeRooms(rooms, i18n.translations));
+	const featuredRooms = $derived(localizedRooms.filter((r) => r.featured));
 </script>
 
 <section class="bg-[var(--color-ivory)] py-24 lg:py-32">
 	<div class="mx-auto max-w-7xl px-6 lg:px-8">
 		<AnimatedSection class="flex flex-col items-center">
 			<SectionHeading
-				title="Our Rooms & Villas"
-				subtitle="From cozy standard rooms to lavish pool villas, every space is thoughtfully designed with Thai Lanna elegance."
+				title={i18n.t('home.featuredTitle')}
+				subtitle={i18n.t('home.featuredSubtitle')}
 			/>
 			<Divider />
 		</AnimatedSection>
@@ -54,12 +57,14 @@
 							</div>
 
 							<div class="mt-5 flex items-center justify-between border-t border-[var(--color-ivory)] pt-4">
-								<Button variant="secondary" size="sm" href="/book">Book This Room</Button>
+								<Button variant="secondary" size="sm" href={localePath(i18n.locale, '/book')}>
+									{i18n.t('common.bookThisRoom')}
+								</Button>
 								<a
-									href="/rooms"
+									href={localePath(i18n.locale, '/rooms')}
 									class="text-xs font-medium text-[var(--color-teal)] hover:underline"
 								>
-									View details →
+									{i18n.t('common.viewAllRooms')} →
 								</a>
 							</div>
 						</div>
@@ -69,7 +74,9 @@
 		</div>
 
 		<AnimatedSection class="mt-12 flex justify-center">
-			<Button variant="primary" size="lg" href="/rooms">View All Rooms</Button>
+			<Button variant="primary" size="lg" href={localePath(i18n.locale, '/rooms')}>
+				{i18n.t('common.viewAllRooms')}
+			</Button>
 		</AnimatedSection>
 	</div>
 </section>

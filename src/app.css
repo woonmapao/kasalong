@@ -64,6 +64,11 @@
 	}
 }
 
+/* Locale-specific font overrides */
+[lang="th"] body { font-family: 'Noto Sans Thai', var(--font-sans); }
+[lang="zh"] body { font-family: 'Noto Sans SC', var(--font-sans); }
+[lang="hi"] body { font-family: 'Noto Sans Devanagari', var(--font-sans); }
+
 /* Scroll-reveal animation */
 @keyframes fadeUp {
 	from {

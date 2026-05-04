@@ -1,15 +1,20 @@
 <script lang="ts">
 	import { galleryImages, type GalleryCategory } from '$lib/data/gallery';
+	import { getI18n } from '$lib/i18n';
 	import GalleryGrid from '$lib/components/gallery/GalleryGrid.svelte';
 	import SectionHeading from '$lib/components/ui/SectionHeading.svelte';
 	import AnimatedSection from '$lib/components/ui/AnimatedSection.svelte';
+	import type { LayoutData } from '../$types';
 
-	const categories: { value: GalleryCategory; label: string }[] = [
-		{ value: 'all', label: 'All Photos' },
-		{ value: 'exterior', label: 'Exterior & Grounds' },
-		{ value: 'facilities', label: 'Pool, Dining & Facilities' },
-		{ value: 'rooms', label: 'Rooms & Suites' }
-	];
+	let { data }: { data: LayoutData } = $props();
+	const i18n = getI18n();
+
+	const categories = $derived([
+		{ value: 'all' as GalleryCategory, label: data.translations.gallery.categories.all },
+		{ value: 'exterior' as GalleryCategory, label: data.translations.gallery.categories.exterior },
+		{ value: 'facilities' as GalleryCategory, label: data.translations.gallery.categories.facilities },
+		{ value: 'rooms' as GalleryCategory, label: data.translations.gallery.categories.rooms }
+	]);
 
 	let activeCategory = $state<GalleryCategory>('all');
 
@@ -21,17 +26,14 @@
 </script>
 
 <svelte:head>
-	<title>Gallery — Kasalong Resort and Spa Pattaya</title>
-	<meta name="description" content="Explore Kasalong Resort's photo gallery: rooms, pool, dining, and the beautiful surroundings of Pattaya, Thailand." />
-	<link rel="canonical" href="https://kasalongresort.com/gallery" />
+	<title>{i18n.t('seo.gallery.title')}</title>
+	<meta name="description" content={i18n.t('seo.gallery.description')} />
+	<link rel="canonical" href="https://kasalongresort.com/{data.locale}/gallery" />
 	<meta property="og:type" content="website" />
-	<meta property="og:title" content="Gallery — Kasalong Resort and Spa Pattaya" />
-	<meta property="og:description" content="Explore Kasalong Resort's photo gallery: rooms, pool, dining, and the beautiful surroundings of Pattaya, Thailand." />
+	<meta property="og:title" content={i18n.t('seo.gallery.title')} />
+	<meta property="og:description" content={i18n.t('seo.gallery.description')} />
 	<meta property="og:image" content="https://kasalongresort.com/images/resort/k-182.webp" />
-	<meta property="og:url" content="https://kasalongresort.com/gallery" />
-	<meta name="twitter:title" content="Gallery — Kasalong Resort and Spa Pattaya" />
-	<meta name="twitter:description" content="Explore Kasalong Resort's photo gallery: rooms, pool, dining, and the beautiful surroundings of Pattaya, Thailand." />
-	<meta name="twitter:image" content="https://kasalongresort.com/images/resort/k-182.webp" />
+	<meta property="og:url" content="https://kasalongresort.com/{data.locale}/gallery" />
 </svelte:head>
 
 <!-- Page hero -->
@@ -39,15 +41,18 @@
 	<img
 		src="/images/resort/k-3.webp"
 		alt="Kasalong Resort main entrance"
-		fetchpriority="high" loading="eager"
+		fetchpriority="high"
+		loading="eager"
 		class="absolute inset-0 h-full w-full object-cover opacity-50"
 	/>
 	<div class="relative z-10 w-full px-6 pb-12 lg:px-8">
 		<div class="mx-auto max-w-7xl">
 			<p class="mb-2 text-xs font-light tracking-widest uppercase text-[var(--color-amber)]">
-				Visual Story
+				{i18n.t('gallery.pagePreTitle')}
 			</p>
-			<h1 class="font-serif text-4xl font-semibold text-white sm:text-5xl">Photo Gallery</h1>
+			<h1 class="font-serif text-4xl font-semibold text-white sm:text-5xl">
+				{i18n.t('gallery.pageTitle')}
+			</h1>
 		</div>
 	</div>
 </div>
@@ -56,8 +61,8 @@
 	<div class="mx-auto max-w-7xl px-6 lg:px-8">
 		<AnimatedSection class="flex flex-col items-center">
 			<SectionHeading
-				title="A Glimpse of Kasalong"
-				subtitle="Browse our collection of photos showcasing the beauty of our resort, rooms, facilities, and the stunning Pattaya surroundings."
+				title={i18n.t('gallery.sectionTitle')}
+				subtitle={i18n.t('gallery.sectionSubtitle')}
 			/>
 		</AnimatedSection>
 

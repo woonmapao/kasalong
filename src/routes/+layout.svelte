@@ -1,7 +1,5 @@
 <script lang="ts">
 	import '../app.css';
-	import Navbar from '$lib/components/layout/Navbar.svelte';
-	import Footer from '$lib/components/layout/Footer.svelte';
 
 	let { children } = $props();
 
@@ -44,15 +42,9 @@
 </script>
 
 <svelte:head>
-	<!-- Global defaults (pages override these with their own svelte:head) -->
 	<meta property="og:site_name" content="Kasalong Resort and Spa" />
 	<meta name="twitter:card" content="summary_large_image" />
-	<!-- JSON-LD: Hotel / LocalBusiness -->
 	{@html `<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>`}
 </svelte:head>
 
-<Navbar />
-<main>
-	{@render children()}
-</main>
-<Footer />
+{@render children()}

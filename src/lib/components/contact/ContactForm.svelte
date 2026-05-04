@@ -1,10 +1,21 @@
 <script lang="ts">
+	import { getI18n } from '$lib/i18n';
+
+	const i18n = getI18n();
+
 	let formData = $state({
 		name: '',
 		email: '',
 		phone: '',
-		subject: 'General Enquiry',
+		subject: '',
 		message: ''
+	});
+
+	// Initialize subject from translations
+	$effect(() => {
+		if (!formData.subject) {
+			formData.subject = i18n.translations.contact.subjects.generalEnquiry;
+		}
 	});
 
 	let status = $state<'idle' | 'sending' | 'success' | 'error'>('idle');
@@ -25,6 +36,11 @@
 		}
 	}
 
+	function resetForm() {
+		status = 'idle';
+		formData = { name: '', email: '', phone: '', subject: i18n.translations.contact.subjects.generalEnquiry, message: '' };
+	}
+
 	const inputClass =
 		'w-full rounded-lg border border-[var(--color-ivory)] bg-white px-4 py-3 text-sm text-[var(--color-charcoal)] placeholder:text-[var(--color-muted)] focus:border-[var(--color-teal)] focus:outline-none focus:ring-2 focus:ring-[var(--color-teal)]/20 transition-colors';
 </script>
@@ -32,15 +48,13 @@
 {#if status === 'success'}
 	<div class="rounded-2xl bg-[var(--color-teal)]/10 border border-[var(--color-teal)]/20 p-8 text-center">
 		<div class="text-4xl mb-3">✓</div>
-		<h3 class="font-serif text-xl text-[var(--color-forest)]">Message Sent!</h3>
-		<p class="mt-2 text-sm text-[var(--color-stone)]">
-			Thank you for reaching out. Our team will get back to you within 24 hours.
-		</p>
+		<h3 class="font-serif text-xl text-[var(--color-forest)]">{i18n.t('contact.formSuccess')}</h3>
+		<p class="mt-2 text-sm text-[var(--color-stone)]">{i18n.t('contact.formSuccessBody')}</p>
 		<button
 			class="mt-5 text-sm font-medium text-[var(--color-teal)] hover:underline"
-			onclick={() => { status = 'idle'; formData = { name: '', email: '', phone: '', subject: 'General Enquiry', message: '' }; }}
+			onclick={resetForm}
 		>
-			Send another message
+			{i18n.t('common.sendAnotherMessage')}
 		</button>
 	</div>
 {:else}
@@ -48,20 +62,20 @@
 		<div class="grid gap-4 sm:grid-cols-2">
 			<div>
 				<label class="mb-1.5 block text-xs font-medium text-[var(--color-stone)]" for="name">
-					Full Name *
+					{i18n.t('contact.formName')}
 				</label>
 				<input
 					id="name"
 					type="text"
 					required
-					placeholder="Your full name"
+					placeholder={i18n.t('contact.formNamePlaceholder')}
 					class={inputClass}
 					bind:value={formData.name}
 				/>
 			</div>
 			<div>
 				<label class="mb-1.5 block text-xs font-medium text-[var(--color-stone)]" for="email">
-					Email Address *
+					{i18n.t('contact.formEmail')}
 				</label>
 				<input
 					id="email"
@@ -77,40 +91,37 @@
 		<div class="grid gap-4 sm:grid-cols-2">
 			<div>
 				<label class="mb-1.5 block text-xs font-medium text-[var(--color-stone)]" for="phone">
-					Phone (optional)
+					{i18n.t('contact.formPhone')}
 				</label>
 				<input
 					id="phone"
 					type="tel"
-					placeholder="+66 xx xxx xxxx"
+					placeholder={i18n.t('contact.formPhonePlaceholder')}
 					class={inputClass}
 					bind:value={formData.phone}
 				/>
 			</div>
 			<div>
 				<label class="mb-1.5 block text-xs font-medium text-[var(--color-stone)]" for="subject">
-					Subject
+					{i18n.t('contact.formSubject')}
 				</label>
 				<select id="subject" class={inputClass} bind:value={formData.subject}>
-					<option>General Enquiry</option>
-					<option>Room Reservation</option>
-					<option>Group Booking</option>
-					<option>Conference & Events</option>
-					<option>Spa & Wellness</option>
-					<option>Feedback</option>
+					{#each Object.values(i18n.translations.contact.subjects) as option}
+						<option>{option}</option>
+					{/each}
 				</select>
 			</div>
 		</div>
 
 		<div>
 			<label class="mb-1.5 block text-xs font-medium text-[var(--color-stone)]" for="message">
-				Message *
+				{i18n.t('contact.formMessage')}
 			</label>
 			<textarea
 				id="message"
 				rows="5"
 				required
-				placeholder="How can we help you?"
+				placeholder={i18n.t('contact.formMessagePlaceholder')}
 				class="{inputClass} resize-none"
 				bind:value={formData.message}
 			></textarea>
@@ -118,7 +129,7 @@
 
 		{#if status === 'error'}
 			<p class="rounded-lg bg-red-50 px-4 py-3 text-sm text-red-600">
-				Something went wrong. Please try again or contact us directly.
+				{i18n.t('contact.formError')}
 			</p>
 		{/if}
 
@@ -127,7 +138,7 @@
 			disabled={status === 'sending'}
 			class="w-full rounded-lg bg-[var(--color-forest)] px-6 py-4 text-sm font-medium text-white transition-colors hover:bg-[var(--color-emerald)] disabled:opacity-60"
 		>
-			{status === 'sending' ? 'Sending…' : 'Send Message'}
+			{status === 'sending' ? i18n.t('contact.formSending') : i18n.t('contact.formSend')}
 		</button>
 	</form>
 {/if}
